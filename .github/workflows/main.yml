@@ -1,0 +1,23 @@
+name: Deploy to Firebase Hosting on Push
+
+on:
+  push:
+    branches:
+      - main  # เปลี่ยนเป็น master ได้ ถ้าคุณใช้ชื่อ branch นั้นเป็นหลัก
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # ขั้นตอนที่ 1: ดึงโค้ดจากโปรเจกต์ลงมาในเครื่องจำลองของ GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ขั้นตอนที่ 2: สั่ง Deploy ขึ้นระบบ Firebase Hosting
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: YOUR_FIREBASE_PROJECT_ID  # ⚠️ เปลี่ยนตรงนี้เป็น Project ID ของ Firebase คุณ
