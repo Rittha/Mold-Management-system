@@ -1,0 +1,243 @@
+{
+  "mockNotificationActivities": {
+    "description": "Mock notification data structure for Mold Management System",
+    "version": "2.0.0",
+    "lastUpdated": "2026-06-13",
+    "departments": {
+      "PDD": {
+        "name": "Production Dispatch Department",
+        "color": "#f59e0b",
+        "icon": "📋",
+        "activities": [
+          {
+            "id": "notif-pdd-001",
+            "department": "PDD",
+            "mold_id": "MOLD-1781267657003",
+            "mold_name": "E-0539",
+            "message": "[PDD] MOLD-1781267657003 (E-0539) - เปิดเคสใหม่จากการผลิต",
+            "fullMessage": "เปิดเคสใหม่จากการผลิต - ส่งจากแผนกการผลิต",
+            "action": "CASE_OPENED",
+            "timestamp": "2026-06-13T10:30:00Z",
+            "duration": "5 minutes ago",
+            "isRead": false,
+            "issue_type": "PDD_NEW_CASE"
+          },
+          {
+            "id": "notif-pdd-002",
+            "department": "PDD",
+            "mold_id": "PD-169",
+            "mold_name": "PD-169",
+            "message": "[PDD] PD-169 - ส่งต่อไป QCD เรียบร้อย",
+            "fullMessage": "ส่งต่อไป QCD - เตรียมสำหรับการตรวจสอบ",
+            "action": "HANDOFF",
+            "timestamp": "2026-06-13T10:25:00Z",
+            "duration": "10 minutes ago",
+            "isRead": false,
+            "issue_type": "PDD_HANDOFF"
+          },
+          {
+            "id": "notif-pdd-003",
+            "department": "PDD",
+            "mold_id": "MOLD-1781267657025",
+            "mold_name": "E-0550",
+            "message": "[PDD] MOLD-1781267657025 (E-0550) - เปิดเคสใหม่ REFLOW",
+            "fullMessage": "เปิดเคสใหม่ - ปัญหา REFLOW ตรวจพบจากการผลิต",
+            "action": "CASE_OPENED",
+            "timestamp": "2026-06-13T10:15:00Z",
+            "duration": "20 minutes ago",
+            "isRead": false,
+            "issue_type": "PDD_NEW_CASE"
+          }
+        ]
+      },
+      "QCD": {
+        "name": "Quality Control Department",
+        "color": "#ef4444",
+        "icon": "✓",
+        "activities": [
+          {
+            "id": "notif-qcd-001",
+            "department": "QCD",
+            "mold_id": "MOLD-1781267657003",
+            "mold_name": "E-0539",
+            "message": "[QCD] MOLD-1781267657003 (E-0539) - เกิดปัญหา BURR, ต้องการ QAD ตรวจสอบ",
+            "fullMessage": "เกิดปัญหา BURR ที่พื้นผิวแม่พิมพ์ - ต้องส่งไปยัง QAD สำหรับการซ่อม",
+            "action": "ISSUE_OPENED",
+            "timestamp": "2026-06-13T10:10:00Z",
+            "duration": "25 minutes ago",
+            "isRead": false,
+            "issue_type": "QCD_ISSUE"
+          },
+          {
+            "id": "notif-qcd-002",
+            "department": "QCD",
+            "mold_id": "MOLD-1781267657015",
+            "mold_name": "E-0540",
+            "message": "[QCD] MOLD-1781267657015 (E-0540) - ผ่านการตรวจสอบ QC ✓",
+            "fullMessage": "ผ่านการตรวจสอบ QC แล้ว - พร้อมส่งต่อสำหรับการผลิต",
+            "action": "QC_PASS",
+            "timestamp": "2026-06-13T09:45:00Z",
+            "duration": "50 minutes ago",
+            "isRead": false,
+            "issue_type": "QCD_PASS"
+          },
+          {
+            "id": "notif-qcd-003",
+            "department": "QCD",
+            "mold_id": "MOLD-1781267657020",
+            "mold_name": "E-0545",
+            "message": "[QCD] MOLD-1781267657020 (E-0545) - ตรวจพบ DRAFT ที่ผิด",
+            "fullMessage": "ตรวจพบ DRAFT ที่ผิดปกติ - ต้องการการออกแบบใหม่จากแผนก PD",
+            "action": "DESIGN_ISSUE",
+            "timestamp": "2026-06-13T09:30:00Z",
+            "duration": "1 hour ago",
+            "isRead": false,
+            "issue_type": "QCD_DESIGN_ISSUE"
+          }
+        ]
+      },
+      "QAD": {
+        "name": "Quality Assurance Department",
+        "color": "#06b6d4",
+        "icon": "🔧",
+        "activities": [
+          {
+            "id": "notif-qad-001",
+            "department": "QAD",
+            "mold_id": "MOLD-1781267657010",
+            "mold_name": "E-0535",
+            "message": "[QAD] MOLD-1781267657010 (E-0535) - อนุมัติการซ่อมและส่งต่อแล้ว",
+            "fullMessage": "อนุมัติการซ่อม BURR แล้ว - ล้างเสร็จสิ้น ส่งกลับ QCD",
+            "action": "APPROVED",
+            "timestamp": "2026-06-13T09:00:00Z",
+            "duration": "1.5 hours ago",
+            "isRead": false,
+            "issue_type": "QAD_APPROVED"
+          },
+          {
+            "id": "notif-qad-002",
+            "department": "QAD",
+            "mold_id": "MOLD-1781267657020",
+            "mold_name": "E-0545",
+            "message": "[QAD] MOLD-1781267657020 (E-0545) - ปัญหายังไม่แก้ไข, ต้องล้างซ้ำ",
+            "fullMessage": "ปัญหายังไม่แก้ไข - ต้องล้างซ้ำครั้งที่ 2 เพื่อการทำความสะอาดเพิ่มเติม",
+            "action": "REJECTED",
+            "timestamp": "2026-06-13T08:45:00Z",
+            "duration": "2 hours ago",
+            "isRead": false,
+            "issue_type": "QAD_REJECTED"
+          },
+          {
+            "id": "notif-qad-003",
+            "department": "QAD",
+            "mold_id": "MOLD-1781267657030",
+            "mold_name": "E-0555",
+            "message": "[QAD] MOLD-1781267657030 (E-0555) - อนุมัติการปรับแต่งสำเร็จ",
+            "fullMessage": "อนุมัติการปรับแต่งระยะและบอก - ความแม่นยำเพิ่มขึ้น",
+            "action": "APPROVED",
+            "timestamp": "2026-06-13T08:15:00Z",
+            "duration": "2.5 hours ago",
+            "isRead": false,
+            "issue_type": "QAD_APPROVED"
+          }
+        ]
+      }
+    },
+    "notificationTypes": {
+      "PDD": [
+        {
+          "type": "PDD_NEW_CASE",
+          "label": "เปิดเคสใหม่",
+          "color": "#f59e0b",
+          "icon": "📋",
+          "description": "แจ้งว่าได้รับเคสใหม่จากแผนกการผลิต"
+        },
+        {
+          "type": "PDD_HANDOFF",
+          "label": "ส่งต่อ",
+          "color": "#8b5cf6",
+          "icon": "🔄",
+          "description": "ส่งต่อแม่พิมพ์ไปยัง QCD"
+        }
+      ],
+      "QCD": [
+        {
+          "type": "QCD_PASS",
+          "label": "ผ่านการตรวจสอบ",
+          "color": "#10b981",
+          "icon": "✓",
+          "description": "แม่พิมพ์ผ่านการตรวจสอบ QC"
+        },
+        {
+          "type": "QCD_ISSUE",
+          "label": "เกิดปัญหา",
+          "color": "#ef4444",
+          "icon": "⚠️",
+          "description": "ตรวจพบปัญหา ต้องส่งไป QAD"
+        },
+        {
+          "type": "QCD_DESIGN_ISSUE",
+          "label": "ปัญหาการออกแบบ",
+          "color": "#f59e0b",
+          "icon": "📐",
+          "description": "ตรวจพบปัญหาการออกแบบ"
+        }
+      ],
+      "QAD": [
+        {
+          "type": "QAD_APPROVED",
+          "label": "อนุมัติ",
+          "color": "#06b6d4",
+          "icon": "👍",
+          "description": "ซ่อมเสร็จ อนุมัติและส่งต่อ"
+        },
+        {
+          "type": "QAD_REJECTED",
+          "label": "ไม่อนุมัติ",
+          "color": "#ec4899",
+          "icon": "❌",
+          "description": "ปัญหายังไม่แก้ไข ต้องซ่อมซ้ำ"
+        }
+      ]
+    },
+    "sampleWorkflow": {
+      "step1": {
+        "department": "PDD",
+        "description": "เปิดเคสใหม่เมื่อ Mold มาถึง",
+        "notification": "[PDD] MOLD-ID - เปิดเคสใหม่"
+      },
+      "step2": {
+        "department": "PDD",
+        "description": "ส่งต่อไป QCD สำหรับการตรวจสอบ",
+        "notification": "[PDD] MOLD-ID - ส่งต่อไป QCD"
+      },
+      "step3": {
+        "department": "QCD",
+        "description": "ตรวจสอบและสรุปผล (Pass/Issue)",
+        "notification": "[QCD] MOLD-ID - ผ่าน/เกิดปัญหา"
+      },
+      "step4": {
+        "department": "QAD",
+        "description": "แก้ไขปัญหา (หากมี)",
+        "notification": "[QAD] MOLD-ID - อนุมัติ/ไม่อนุมัติ"
+      }
+    },
+    "userActions": {
+      "readNotification": {
+        "action": "Click on notification item",
+        "behavior": "Fade-out animation (300ms) + Remove from list",
+        "result": "Notification disappears, badge count updates"
+      },
+      "filterNotifications": {
+        "action": "Click 'All' or 'Unread' tab",
+        "behavior": "Re-render dropdown with filtered items",
+        "result": "Shows only selected notifications"
+      },
+      "closeDropdown": {
+        "action": "Click bell icon or click outside",
+        "behavior": "Smooth close animation",
+        "result": "Dropdown hidden"
+      }
+    }
+  }
+}

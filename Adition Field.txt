@@ -1,0 +1,27 @@
+Fix Applied
+✅ Updated PDD and QAD flow to support required due dates and urgent reminders.
+
+What changed
+pdd.html
+
+Added a required due_date field to the PDD input form.
+Added Due Date column to the PDD history table.
+qad.html
+
+Added Due Date column to the QAD queue table.
+Added hidden job_number field to the QAD cleaning form.
+Cleared the hidden job_number input after submitting the cleaning form.
+app.js
+
+Added due-date formatting and urgency detection helpers.
+Rendered due date in PDD history, PDD live signal, and QAD queue.
+Marked due dates as urgent when due today or overdue.
+Passed job_number from selected QAD queue items into the cleaning form.
+moldController.js
+
+Required due_date when creating a new mold.
+Stored due_date and preserved Job Number metadata.
+cleaningController.js
+
+Accepted job_number from QAD cleaning submissions.
+Preserved the job number in cleaning records.

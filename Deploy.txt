@@ -1,0 +1,3 @@
+cd /d D:\PROJECT\Mold system management
+firebase login
+firebase deploy

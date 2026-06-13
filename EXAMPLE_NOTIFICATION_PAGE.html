@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Badge System - Example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    /* Navigation */
+    .topbar {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 16px 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav a {
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #1f3a68;
+      background: white;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .nav a:hover {
+      border-color: #38bdf8;
+      background: #f0f7ff;
+    }
+
+    /* Notification Link */
+    .notification-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+
+    .notification-link.has-badge {
+      border-color: rgba(248, 113, 113, 0.45);
+      background: rgba(254, 242, 242, 0.98);
+    }
+
+    /* Notification Badge */
+    .notification-badge {
+      display: inline-grid;
+      place-items: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: #ef4444;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+
+    .notification-badge:not(.is-active) {
+      display: none;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 16px;
+      color: #1f3a68;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 24px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 12px;
+      color: #666;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: #1f3a68;
+      color: #38bdf8;
+      padding: 16px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .feature-card {
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 4px solid #38bdf8;
+    }
+
+    .feature-card strong {
+      color: #1f3a68;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .status.ready {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.partial {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #0ea5e9;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #1f3a68;
+    }
+
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+
+    .info-box {
+      background: #f0f7ff;
+      border-left: 4px solid #0ea5e9;
+      padding: 16px;
+      border-radius: 4px;
+      margin: 16px 0;
+    }
+
+    .info-box strong {
+      color: #0c4a6e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    table th {
+      background: #f9fafb;
+      font-weight: 600;
+      color: #1f3a68;
+    }
+
+    table tr:hover {
+      background: #f9fafb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="topbar">
+    <div class="nav">
+      <a href="#home">Home</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#tasks">Tasks</a>
+      <!-- Notification badge will be injected here -->
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <!-- Welcome Section -->
+    <div class="section">
+      <h1>🔔 Notification Badge System</h1>
+      <p>Real-time notification count from Firestore with PWA support.</p>
+      <p style="color: #999; font-size: 14px;">Project: mold-management-439a8</p>
+    </div>
+
+    <!-- Status Section -->
+    <div class="section">
+      <h2>📊 System Status</h2>
+      <div id="systemStatus">
+        <p style="color: #999;">Initializing...</p>
+      </div>
+      <div class="button-group">
+        <button class="btn-primary" onclick="testConnection()">Test Connection</button>
+        <button class="btn-secondary" onclick="viewLogs()">View Logs</button>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="section">
+      <h2>✨ Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <strong>✓ Real-Time</strong>
+          <p>Badge updates instantly via Firestore onSnapshot listener</p>
+        </div>
+        <div class="feature-card">
+          <strong>✓ PWA Badge</strong>
+          <p>Updates OS app icon badge (Chrome, Safari, Edge, Firefox)</p>
+        </div>
+        <div class="feature-card">
+          <strong>✓ Accessible</strong>
+          <p>ARIA labels and live regions for screen readers</p>
+        </div>
+        <div class="feature-card">
+          <strong>✓ Lightweight</strong>
+          <p>No dependencies except Firebase SDK v9</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuration Section -->
+    <div class="section\">\n      <h2>⚙️ Configuration</h2>\n      <table>\n        <thead>\n          <tr>\n            <th>Setting</th>\n            <th>Value</th>\n            <th>Description</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td><code>COLLECTION_NAME</code></td>\n            <td><code>notifications</code></td>\n            <td>Firestore collection to query</td>\n          </tr>\n          <tr>\n            <td><code>UNREAD_FIELD</code></td>\n            <td><code>isRead</code></td>\n            <td>Field name (queries where value == false)</td>\n          </tr>\n          <tr>\n            <td><code>ENABLE_APP_BADGE</code></td>\n            <td><code>true</code></td>\n            <td>Update PWA app badge</td>\n          </tr>\n          <tr>\n            <td><code>MAX_BADGE_DISPLAY</code></td>\n            <td><code>99</code></td>\n            <td>Max count before showing \"99+\"</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n    <!-- Usage Section -->\n    <div class=\"section\">\n      <h2>🚀 Quick Start</h2>\n      <h3>1. Minimal Setup</h3>\n      <pre>import { startNotificationBadge } from './notifications.js';\n\n// Auto-inject and start listening\nawait startNotificationBadge();</pre>\n\n      <h3>2. Custom Collection</h3>\n      <pre>await startNotificationBadge({\n  collectionName: 'alerts',\n  enableAppBadge: true\n});</pre>\n\n      <h3>3. Manual Control</h3>\n      <pre>// Get current count\nconsole.log(window.NotificationBadge.getCount());\n\n// Check if listening\nconsole.log(window.NotificationBadge.isListening());\n\n// Stop listening\nwindow.NotificationBadge.stop();</pre>\n    </div>\n\n    <!-- API Reference -->\n    <div class=\"section\">\n      <h2>📖 API Reference</h2>\n\n      <h3>startNotificationBadge(options)</h3>\n      <p>Start listening to unread notifications.</p>\n      <pre>const unsubscribe = await startNotificationBadge({\n  collectionName: 'notifications',  // Optional\n  enableAppBadge: true,              // Optional\n  autoInject: true                   // Optional\n});</pre>\n\n      <h3>injectNotificationLink(options)</h3>\n      <p>Manually create the notification UI element.</p>\n      <pre>injectNotificationLink({ \n  navSelector: '.nav' \n});</pre>\n\n      <h3>stopNotificationBadge()</h3>\n      <p>Stop listening and reset badge.</p>\n      <pre>window.NotificationBadge.stop();</pre>\n\n      <h3>getNotificationCount()</h3>\n      <p>Get current unread count.</p>\n      <pre>const count = window.NotificationBadge.getCount();</pre>\n    </div>\n\n    <!-- Data Structure -->\n    <div class=\"section\">\n      <h2>📋 Firestore Document Structure</h2>\n      <p>Required field: <code>isRead</code> (boolean)</p>\n      <pre>{\n  id: \"notif-001\",\n  isRead: false,           // ← Queried field\n  title: \"Task Assigned\",\n  message: \"Review needed\",\n  createdAt: \"2026-06-09T10:00:00Z\",\n  userId: \"user-123\"\n}</pre>\n      <div class=\"info-box\">\n        <strong>Note:</strong> Any collection with an <code>isRead</code> field can be used.\n        Not limited to \"notifications\" collection.\n      </div>\n    </div>\n\n    <!-- Testing -->\n    <div class=\"section\">\n      <h2>✅ Testing Instructions</h2>\n      <ol style=\"margin-left: 20px;\">\n        <li>Open browser DevTools (F12)</li>\n        <li>Check console for initialization logs</li>\n        <li>Navigate to Firestore Console</li>\n        <li>Add document to <code>notifications</code> collection with <code>isRead: false</code></li>\n        <li>Verify badge count updates within 2 seconds</li>\n        <li>Update document to <code>isRead: true</code></li>\n        <li>Verify badge count decreases</li>\n      </ol>\n    </div>\n\n    <!-- Troubleshooting -->\n    <div class=\"section\">\n      <h2>🐛 Troubleshooting</h2>\n      \n      <h3>Badge Not Showing?</h3>\n      <ul style=\"margin-left: 20px;\">\n        <li>Check CSS is loaded: <code>css/style.css</code></li>\n        <li>Verify <code>.nav</code> element exists</li>\n        <li>Open DevTools Console for errors</li>\n      </ul>\n\n      <h3>Count Not Updating?</h3>\n      <ul style=\"margin-left: 20px;\">\n        <li>Verify Firestore collection exists</li>\n        <li>Ensure documents have <code>isRead: false</code> field</li>\n        <li>Check Firestore security rules allow reads</li>\n        <li>Run: <code>console.log(window.NotificationBadge.isListening())</code></li>\n      </ul>\n\n      <h3>Firebase Not Initialized?</h3>\n      <ul style=\"margin-left: 20px;\">\n        <li>Verify <code>firebase-config.js</code> is imported</li>\n        <li>Check Firebase credentials</li>\n        <li>Ensure network connection is working</li>\n      </ul>\n    </div>\n\n    <!-- Documentation Links -->\n    <div class=\"section\">\n      <h2>📚 Documentation</h2>\n      <ul style=\"margin-left: 20px; line-height: 2;\">\n        <li><a href=\"../NOTIFICATION_SYSTEM_GUIDE.md\" target=\"_blank\">Complete Implementation Guide</a></li>\n        <li><a href=\"../DEPLOYMENT_GUIDE.md\" target=\"_blank\">Deployment Guide</a></li>\n        <li><a href=\"https://firebase.google.com/docs/firestore\" target=\"_blank\">Firebase Firestore Docs</a></li>\n        <li><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Badging_API\" target=\"_blank\">PWA Badging API</a></li>\n      </ul>\n    </div>\n\n    <!-- Footer -->\n    <div class=\"section\" style=\"background: #f9fafb; text-align: center;\">\n      <p style=\"color: #999; font-size: 12px;\">\n        <strong>Status:</strong> Production Ready ✓\n        <br>\n        <strong>Version:</strong> 1.0.0\n        <br>\n        <strong>Last Updated:</strong> 2026-06-09\n      </p>\n    </div>\n\n  </div>\n\n  <!-- Notification System Scripts -->\n  <script type=\"module\">\n    // Import notification module\n    const { injectNotificationLink, startNotificationBadge } = await import('./notifications.js');\n\n    // Initialize notification system\n    async function initializeNotifications() {\n      try {\n        // Inject UI element\n        injectNotificationLink();\n        console.log('✓ Notification link injected');\n\n        // Start listening\n        const unsubscribe = await startNotificationBadge({\n          collectionName: 'notifications',\n          enableAppBadge: true\n        });\n        console.log('✓ Notification listener started');\n\n        // Update status display\n        updateSystemStatus('ready', unsubscribe);\n      } catch (error) {\n        console.error('✗ Failed to initialize notifications:', error);\n        updateSystemStatus('error', null, error.message);\n      }\n    }\n\n    // Update system status display\n    function updateSystemStatus(status, unsubscribe, errorMsg) {\n      const statusEl = document.getElementById('systemStatus');\n      if (!statusEl) return;\n\n      if (status === 'ready') {\n        statusEl.innerHTML = `\n          <div style=\"display: flex; align-items: center; gap: 12px;\">\n            <span class=\"status ready\">✓ READY</span>\n            <span>All systems operational. Badge is listening for updates.</span>\n          </div>\n          <p style=\"margin-top: 12px; color: #666; font-size: 12px;\">\n            Current count: <strong id=\"currentCount\">0</strong>\n          </p>\n        `;\n\n        // Update count display\n        window.addEventListener('notificationCountChanged', (e) => {\n          const countEl = document.getElementById('currentCount');\n          if (countEl) countEl.textContent = e.detail.count;\n        });\n      } else if (status === 'error') {\n        statusEl.innerHTML = `\n          <div style=\"display: flex; align-items: center; gap: 12px;\">\n            <span class=\"status partial\">⚠ ERROR</span>\n            <span>${errorMsg}</span>\n          </div>\n        `;\n      }\n    }\n\n    // Test connection\n    window.testConnection = async function() {\n      console.log('Testing connection...');\n      const count = window.NotificationBadge?.getCount?.();\n      const listening = window.NotificationBadge?.isListening?.();\n      alert(`✓ Connection OK\\nCurrent count: ${count}\\nListening: ${listening}`);\n    };\n\n    // View logs\n    window.viewLogs = function() {\n      console.log('=== Notification System Info ===');\n      console.log('Count:', window.NotificationBadge?.getCount?.());\n      console.log('Listening:', window.NotificationBadge?.isListening?.());\n      alert('Check console (F12) for detailed logs');\n    };\n\n    // Initialize on load\n    initializeNotifications();\n  </script>\n\n</body>\n</html>\n"
